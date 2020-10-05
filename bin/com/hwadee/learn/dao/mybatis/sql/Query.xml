@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hwadee.learn.dao">
+
+    <resultMap id="accountMap" type="com.hwadee.learn.pojo.Account" >
+        <result property="account" column="account"/>
+        <result property="password" column="passwd"/>
+    </resultMap>
+    
+    <resultMap id="personMap" type="com.hwadee.learn.pojo.Person01">
+        <result property="snum" column="personid"/>
+        <result property="name" column="pname"/>
+        <result property="sex" column="sex"/>
+        <result property="age" column="age"/>
+        <result property="prefer" column="prefer"/>
+        <result property="address" column="address"/>
+    </resultMap>
+
+    <update id="updatePerson" parameterType="com.hwadee.learn.pojo.Person01">
+        update person_main set pname=#{name} , sex=#{sex}, age=#{age}, prefer=#{prefer},address=#{address}
+         where  personid = #{snum} and status=0;
+    </update>
+
+    <select id="getActByUsrPwd" resultMap="accountMap" parameterType="com.hwadee.learn.pojo.Person01">
+        select
+        *
+        from account_main
+        where account=#{account} and passwd=#{password} and status=0
+    </select>
+
+    <select id="getPersonList" resultMap="personMap" parameterType="com.hwadee.learn.pojo.Person01">
+        select
+        *
+        from person_main
+        where status=0
+    </select>
+
+
+</mapper>

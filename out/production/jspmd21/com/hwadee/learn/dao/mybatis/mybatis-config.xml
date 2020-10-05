@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <!-- 使用别名 -->
+    <typeAliases>
+        <!-- 为包下的所有文件设置别名，别名为类名，不分大小写 -->
+        <package name="com.hwadee.learn.pojo"/>
+    </typeAliases>
+
+    <!-- 和Spring整合后environments配置将废除 -->
+    <environments default="mysql_developer">
+        <environment id="mysql_developer">
+            <!-- mybatis使用jdbc事务管理方式 -->
+            <transactionManager type="JDBC"/>
+            <!-- mybatis使用连接池方式来获取连接 -->
+            <dataSource type="POOLED">
+                <!-- 配置与数据库交互的4个必要属性 -->
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/shiyan3?serverTimezone=Asia/Shanghai"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 加载映射文件     -->
+    <mappers>
+        <!--<mapper class="com.inquiry.mis.worknotes.dao.CodeRefDao"/>-->
+        <!--<mapper class="com.inquiry.mis.worknotes.dao.AccountDao"/>-->
+
+        <mapper resource="com/hwadee/learn/dao/mybatis/sql/Query.xml"/>
+        <!-- 自动加载包下的所有映射文件 -->
+        <!--<package name="com.chengdu.learn.bugtrack.dao.mybatis.sql"/>-->
+    </mappers>
+
+
+</configuration>
+
+
